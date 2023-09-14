@@ -1,4 +1,4 @@
-FROM ubuntu:focal-20221130
+FROM alpine:3.18
 
 ENV TZ="Asia/Shanghai"
 
@@ -8,7 +8,7 @@ ARG TARGETARCH
 COPY ./script/entrypoint.sh /entrypoint.sh
 
 RUN export DEBIAN_FRONTEND="noninteractive" && \
-    apt update && apt install -y ca-certificates tzdata && \
+    apk update && apk add ca-certificates tzdata && \
     update-ca-certificates && \
     ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
     dpkg-reconfigure tzdata && \
