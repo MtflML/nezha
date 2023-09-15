@@ -7,11 +7,11 @@ ARG TARGETARCH
 
 COPY ./script/entrypoint.sh /entrypoint.sh
 
-RUN export DEBIAN_FRONTEND="noninteractive" && \
-    apk update && apk add ca-certificates tzdata && \
-    update-ca-certificates && \
-    ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
-    dpkg-reconfigure tzdata && \
+RUN apk update && \
+    apk add ca-certificates tzdata && \
+    export TZ=$TZ && \
+    ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    date && \
     chmod +x /entrypoint.sh
 
 WORKDIR /dashboard
