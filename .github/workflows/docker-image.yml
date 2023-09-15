@@ -6,11 +6,11 @@ on:
     branches:
       - v2
   schedule:
-    - cron: 30 0 * * *
+    - cron: 0 1 * * *
 
 jobs:
   Building:
-      runs-on: alpine-latest
+      runs-on: alpine:3.18
       name: "Build Argo-Nezha images"
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
