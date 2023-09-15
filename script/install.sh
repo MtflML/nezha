@@ -70,7 +70,7 @@ pre_check() {
         GITHUB_URL="github.com"
         Get_Docker_URL="get.docker.com"
         Get_Docker_Argu=" "
-        Docker_IMG="\/stardustaln\/nz"
+        Docker_IMG="hub.docker.com\/stardustaln\/nz"
     else
         GITHUB_RAW_URL="cdn.jsdelivr.net/gh/naiba/nezha@master"
         GITHUB_URL="dn-dao-github-mirror.daocloud.io"
@@ -187,13 +187,13 @@ install_dashboard() {
     command -v docker >/dev/null 2>&1
     if [[ $? != 0 ]]; then
         echo -e "正在安装 Docker"
-        bash <(curl -sL https://${Get_Docker_URL}) ${Get_Docker_Argu} >/dev/null 2>&1
+        apk add docker
         if [[ $? != 0 ]]; then
-            echo -e "${red}下载脚本失败，请检查本机能否连接 ${Get_Docker_URL}${plain}"
+            echo -e "Docker无法下载"
             return 0
         fi
-        systemctl enable docker.service
-        systemctl start docker.service
+        rc-update add docker
+        rc-service docker start
         echo -e "${green}Docker${plain} 安装成功"
     fi
     
@@ -314,9 +314,8 @@ modify_agent_config() {
     echo -e "Agent配置 ${green}修改成功，请稍等重启生效${plain}"
     
     if [ "$os_alpine" != 1 ];then
-        systemctl daemon-reload
-        systemctl enable nezha-agent
-        systemctl restart nezha-agent
+        rc-update add nezha-agent
+        rc-service nezha-agent restart
     else
         nohup ${NZ_AGENT_PATH}/nezha-agent -s ${nz_grpc_host}:${nz_grpc_port} -p ${nz_client_secret} >/dev/null 2>&1 &
     fi
