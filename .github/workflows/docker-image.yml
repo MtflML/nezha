@@ -8,7 +8,7 @@ on:
 
 jobs:
   Building:
-      runs-on: alpine-3.18
+      runs-on: alpine-latest
       name: "Build Argo-Nezha images"
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
