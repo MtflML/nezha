@@ -66,11 +66,11 @@ pre_check() {
     fi
     
     if [[ -z "${CN}" ]]; then
-        GITHUB_RAW_URL="raw.githubusercontent.com/naiba/nezha/master"
+        GITHUB_RAW_URL="raw.githubusercontent.com/MtflML/nezha/master"
         GITHUB_URL="github.com"
         Get_Docker_URL="get.docker.com"
         Get_Docker_Argu=" "
-        Docker_IMG="ghcr.io\/naiba\/nezha-dashboard"
+        Docker_IMG="\/stardustaln\/nz"
     else
         GITHUB_RAW_URL="cdn.jsdelivr.net/gh/naiba/nezha@master"
         GITHUB_URL="dn-dao-github-mirror.daocloud.io"
@@ -488,7 +488,7 @@ uninstall_dashboard() {
     fi
     
     rm -rf $NZ_DASHBOARD_PATH
-    docker rmi -f ghcr.io/naiba/nezha-dashboard > /dev/null 2>&1
+    docker rmi -f /stardustaln/nz > /dev/null 2>&1
     docker rmi -f registry.cn-shanghai.aliyuncs.com/naibahq/nezha-dashboard > /dev/null 2>&1
     clean_all
     
