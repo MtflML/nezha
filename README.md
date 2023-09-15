@@ -144,5 +144,3 @@ You can change the dashboard language in the settings page (`/setting`) after th
 <a href="https://github.com/colour93" title="玖叁">
   <img src="https://avatars.githubusercontent.com/u/64313711?v=4" width="50;" alt="玖叁"/>
 </a><!--GAMFC_DELIMITER_END-->
-
-## Star History
