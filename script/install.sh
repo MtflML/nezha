@@ -66,7 +66,7 @@ pre_check() {
     fi
     
     if [[ -z "${CN}" ]]; then
-        GITHUB_RAW_URL="raw.githubusercontent.com/MtflML/nezha/master"
+        GITHUB_RAW_URL="raw.githubusercontent.com/MtflML/nezha/v2"
         GITHUB_URL="github.com"
         Get_Docker_URL="get.docker.com"
         Get_Docker_Argu=" "
